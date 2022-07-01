@@ -1,0 +1,14 @@
+A couple notes for you guys reading these files for the first time
+
+- it's OKAY if you don't understand everything. We didn't when we started out. Just ask the captains if you don't understand something, and either
+the code's from a billion years ago and we just shrug, or we can help you understand
+
+- also, COMMENT : when you make a new file, comment what it's for. when you make a new function, comment what it does. and any weird logic thing that you do
+
+- when you create your own C++ file, want to make a function, or want to make a variable, do note that C++ is weird in that
+you MUST go inside the include folder, make/find the .h file that corresponds you're file, and then make the var/func signatures there
+only after that can you go into the actual C++ file to make and write the full variable/functions - if you are making your own file,
+you also have to do #include <[file].h> at the heading
+
+- also, do note that we often use std::atomic variables. What these variables mean are that threads can share them and that they won't
+die on us when threads change and use them constantly
