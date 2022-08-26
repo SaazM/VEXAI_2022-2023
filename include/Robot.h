@@ -28,12 +28,15 @@ class Robot{
 		static ADIEncoder RE;
 		static ADIEncoder BE;
 		static ADIDigitalOut piston;
-		static ADIAnalogIn potentiometer;
+		static ADIAnalogIn potentiomete;
 
 		static std::map<std::string, std::unique_ptr<pros::Task>> tasks;
 
 		static void mecanum(int power, int strafe, int turn);
 		static void drive(void *ptr);
 		static void brake(std::string mode);
+		static void start_task(std::string name, void (*func)(void *));
+		static bool task_exists(std::string name);
+		static void kill_task(std::string name);
 };
 #endif
