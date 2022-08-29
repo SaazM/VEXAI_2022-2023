@@ -107,7 +107,7 @@ void Robot::mecanum(int power, int strafe, int turn) {
 
 void Robot::start_task(std::string name, void (*func)(void *)) {
     if (!task_exists(name)) {
-        tasks.insert(std::pair<std::string, std::unique_ptr<pros::Task>>(name, std::move(std::make_unique<pros::Task>(func, &x, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, ""))));
+        tasks.insert(std::pair<std::string, std::unique_ptr<pros::Task>>(name, std::move(std::make_unique<pros::Task>(func, nullptr, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, ""))));
     }
 }
 
