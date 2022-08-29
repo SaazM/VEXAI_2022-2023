@@ -12,3 +12,16 @@ you also have to do #include <[file].h> at the heading
 
 - also, do note that we often use std::atomic variables. What these variables mean are that threads can share them and that they won't
 die on us when threads change and use them constantly
+
+
+
+
+
+
+
+
+
+
+
+
+testing for github discord integration
