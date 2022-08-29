@@ -1,6 +1,5 @@
 #include "main.h"
 #include "Robot.h"
-// #include "PD.cpp"
 #include <map>
 #include <cmath>
 #include <atomic>
@@ -15,28 +14,18 @@ using namespace std;
 std::map<std::string, std::unique_ptr<pros::Task>> Robot::tasks;
 
 Controller Robot::master(E_CONTROLLER_MASTER);
-/* --- OLD PORTS --- */
-// Motor Robot::FLT(2, true); //front left top
-// Motor Robot::FLB(1); //front left bottom
-// Motor Robot::FRT(9); //front right top
-// Motor Robot::FRB(10, true); //front right bottom
-// Motor Robot::BRT(20, true); //back right top
-// Motor Robot::BRB(19); //back right bottom
-// Motor Robot::BLT(11); //back left top
-// Motor Robot::BLB(12, true); //back left bottom
 
-// Motor Robot::angler(17);
-// Motor Robot::conveyor(18);
 
 /* --- NEW PORTS 8/25 --- */
-Motor Robot::FLT(1, true); //front left top
-Motor Robot::FLB(2); //front left bottom
-Motor Robot::FRT(9); // front right top
-Motor Robot::FRB(10, true); //front right bottom
-Motor Robot::BRT(20); //back right top
-Motor Robot::BRB(19); //back right bottom
-Motor Robot::BLT(11, true); //back left top
-Motor Robot::BLB(12); //back left bottom
+
+Motor Robot::BRB(19, true);
+Motor Robot::BRT(20);
+Motor Robot::BLT(11, true);
+Motor Robot::BLB(12);
+Motor Robot::FLT(1, true);
+Motor Robot::FLB(2);
+Motor Robot::FRB(10, true);
+Motor Robot::FRT(9);
 
 
 void Robot::drive(void *ptr) {
@@ -52,27 +41,28 @@ void Robot::drive(void *ptr) {
 
 void Robot::mecanum(int power, int strafe, int turn) {
 
- int powers[] {
-     power + strafe + turn,
-     power - strafe - turn,
-     power - strafe + turn, 
-     power + strafe - turn
- };
+    int powers[] {
+        power + strafe + turn,
+        power - strafe - turn,
+        power - strafe + turn,
+        power + strafe - turn
+    };
 
- int max = *max_element(powers, powers + 4);
- int min = abs(*min_element(powers, powers + 4));
+    int max = *max_element(powers, powers + 4);
+    int min = abs(*min_element(powers, powers + 4));
 
- double true_max = double(std::max(max, min));
- double scalar = (true_max > 127) ? 127 / true_max : 1;
-    
- FLT = powers[0] * scalar;
- FLB = -powers[1] * scalar;
- FRT = powers[2] * scalar;
- FRB = powers[3] * scalar;
- BLT = powers[0] * scalar;
- BLB = powers[1] * scalar;
- BRT = powers[2] * scalar;
- BRB = -powers[3] * scalar;
+    double true_max = double(std::max(max, min));
+    //200 is the max speed
+    double scalar = (true_max > 200) ? 200 / true_max : 1;
+
+    FLT = powers[0] * scalar;
+    FRT = powers[1] * scalar;
+    BLT = powers[2] * scalar;
+    BRT = powers[3] * scalar;
+    FLB = powers[0] * scalar;
+    FRB = powers[1] * scalar;
+    BLB = powers[2] * scalar;
+    BRB = powers[3] * scalar;
 }
 
 // void Robot::brake(std::string mode)
