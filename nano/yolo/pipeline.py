@@ -6,11 +6,10 @@ class Pipeline:
     def __init__(self, flip, device_number):
         self.pipeline = rs.pipeline()
         self.config = rs.config()
-        # this self might not work
         self.pipeline.start(config)
         self.flip = flip
 
-        self.image_size = (639, 640)
+        self.image_size = (640, 640)
         self.align = rs.align(rs.stream.color)
 
         self.config.enable_device(device_number)
@@ -19,7 +18,7 @@ class Pipeline:
         device = pipeline_profile.get_device().first_depth_sensor()
 
         try:
-            device.set_option('min_distance',0)
+            device.set_option('min_distance', 0)
         except:
             pass
         self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
@@ -33,7 +32,7 @@ class Pipeline:
 
         self.pipeline.start(self.config)
         
-        self.img_size = (640,640)
+        self.img_size = (640, 640)
         self.align = rs.align(rs.stream.color)
     def get_frames(self):
         frames = self.pipeline.wait_for_frames()
