@@ -1,4 +1,8 @@
 #include "main.h"
+using namespace pros;
+
+#define QUAD_TOP_PORT 'A'
+#define QUAD_BOTTOM_PORT 'B'
 
 /**
  * A callback function for LLEMU's center button.
@@ -28,6 +32,7 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	pros::lcd::register_btn1_cb(on_center_button);
+	pros::ADIEncoder encoder (QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
 }
 
 /**

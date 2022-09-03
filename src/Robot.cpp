@@ -3,9 +3,11 @@
 #include <map>
 #include <cmath>
 #include <atomic>
+#include <valarray>
 #include <vector>
 #include <chrono>
 #include <unordered_map>
+#include <string>
 #include <deque>
 using namespace pros;
 using namespace std;
@@ -18,6 +20,7 @@ Controller Robot::master(E_CONTROLLER_MASTER);
 
 /* --- NEW PORTS 8/25 --- */
 
+// Motor Ports
 Motor Robot::BRB(19, true);
 Motor Robot::BRT(20);
 Motor Robot::BLT(11, true);
@@ -26,6 +29,10 @@ Motor Robot::FLT(1, true);
 Motor Robot::FLB(2);
 Motor Robot::FRB(10, true);
 Motor Robot::FRT(9);
+
+// Encoder setup for Mae
+#define QUAD_TOP_PORT 'A'
+#define QUAD_BOTTOM_PORT 'B'
 
 
 void Robot::drive(void *ptr) {
@@ -109,4 +116,8 @@ void Robot::kill_task(std::string name) {
     if (task_exists(name)) {
         tasks.erase(name);
     }
+}
+
+void display_shaft_encoder(pros::ADIEncoder encoder) {
+    pros::lcd::print(1, "Encoder val: %s\n", std::to_string(encoder.get_value()));
 }
