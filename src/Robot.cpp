@@ -119,5 +119,5 @@ void Robot::kill_task(std::string name) {
 }
 
 void display_shaft_encoder(pros::ADIEncoder encoder) {
-    pros::lcd::print(1, "Encoder val: %s\n", std::to_string(encoder.get_value()));
+    pros::lcd::print(1, "Encoder value: %s\n", std::to_string(encoder.get_value()));
 }

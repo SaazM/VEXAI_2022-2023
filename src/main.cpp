@@ -30,7 +30,6 @@ void initialize() {
 
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
-
 	pros::lcd::register_btn1_cb(on_center_button);
 	pros::ADIEncoder encoder (QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
 }
