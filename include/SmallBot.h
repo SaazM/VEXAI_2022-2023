@@ -1,5 +1,5 @@
-#ifndef _15inch
-#define _15inch
+#ifndef _SmallBot
+#define _SmallBot
 #include <map>
 #include <memory>
 #include <string>
@@ -8,7 +8,7 @@
 #include <atomic>
 using namespace pros;
 
-class 15inch {
+class SmallBot {
     public:
         static Controller controller;
         static Controller master;
@@ -27,7 +27,7 @@ class 15inch {
         static Rotation BE;
         static std::map<std::string, std::unique_ptr<pros::Task>> tasks;
         static void drive(void *ptr);
-        static void gps_initialize(void "ptr");
+        static void gps_initialize(void *ptr);
         static void send_data();
         static void receive_data(nlohmann::json msg);
         static void start_task(std::string name, void (*func)(void *));

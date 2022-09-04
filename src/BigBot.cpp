@@ -1,7 +1,7 @@
 /* rename to 18inch.cpp */
 
 #include "main.h"
-#include "Robot.h"
+#include "BigBot.h"
 #include <map>
 #include <cmath>
 #include <atomic>
@@ -13,24 +13,24 @@ using namespace pros;
 using namespace std;
 
 
-std::map<std::string, std::unique_ptr<pros::Task>> Robot::tasks;
+std::map<std::string, std::unique_ptr<pros::Task>> BigBot::tasks;
 
-Controller Robot::master(E_CONTROLLER_MASTER);
+Controller BigBot::master(E_CONTROLLER_MASTER);
 
 
 /* --- NEW PORTS 8/25 --- */
 
-Motor Robot::BRB(19, true);
-Motor Robot::BRT(20);
-Motor Robot::BLT(11, true);
-Motor Robot::BLB(12);
-Motor Robot::FLT(1, true);
-Motor Robot::FLB(2);
-Motor Robot::FRB(10, true);
-Motor Robot::FRT(9);
+Motor BigBot::BRB(19, true);
+Motor BigBot::BRT(20);
+Motor BigBot::BLT(11, true);
+Motor BigBot::BLB(12);
+Motor BigBot::FLT(1, true);
+Motor BigBot::FLB(2);
+Motor BigBot::FRB(10, true);
+Motor BigBot::FRT(9);
 
 
-void Robot::drive(void *ptr) {
+void BigBot::drive(void *ptr) {
     while (true) {
         int power = master.get_analog(ANALOG_LEFT_Y);
         int strafe = master.get_analog(ANALOG_LEFT_X);
@@ -41,7 +41,7 @@ void Robot::drive(void *ptr) {
     }
 }
 
-void Robot::mecanum(int power, int strafe, int turn) {
+void BigBot::mecanum(int power, int strafe, int turn) {
 
     int powers[] {
         power + strafe + turn,
@@ -97,17 +97,17 @@ void Robot::mecanum(int power, int strafe, int turn) {
 //     else FLT = FLB= FRT = FRB= BLT = BLB = BRT = BRB= 0;
 // }
 
-void Robot::start_task(std::string name, void (*func)(void *)) {
+void BigBot::start_task(std::string name, void (*func)(void *)) {
     if (!task_exists(name)) {
         tasks.insert(std::pair<std::string, std::unique_ptr<pros::Task>>(name, std::move(std::make_unique<pros::Task>(func, nullptr, TASK_PRIORITY_DEFAULT, TASK_STACK_DEPTH_DEFAULT, ""))));
     }
 }
 
-bool Robot::task_exists(std::string name) {
+bool BigBot::task_exists(std::string name) {
     return tasks.find(name) != tasks.end();
 }
 
-void Robot::kill_task(std::string name) {
+void BigBot::kill_task(std::string name) {
     if (task_exists(name)) {
         tasks.erase(name);
     }

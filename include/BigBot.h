@@ -1,5 +1,5 @@
-#ifndef _Robot
-#define _Robot
+#ifndef _BigBot
+#define _BigBot
 #include <map>
 #include <memory>
 #include <string>
@@ -8,7 +8,7 @@
 #include <atomic>
 using namespace pros;
 
-class Robot {
+class BigBot {
 	public:
 		static Controller master;
 		static Motor FLT;
