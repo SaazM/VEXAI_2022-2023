@@ -5,14 +5,13 @@
 #include <string>
 #include <vector>
 #include <deque>
-
 #include <atomic>
 using namespace pros;
+
 class 15inch {
     public:
         static Controller controller;
         static Controller master;
-        static std::map<std::string, std::unique_ptr<pros::Task>> tasks;
         static Motor FL;
         static Motor ML;
         static Motor BL;
@@ -26,6 +25,7 @@ class 15inch {
         static Gps gps;
         static Imu IMU;
         static Rotation BE;
+        static std::map<std::string, std::unique_ptr<pros::Task>> tasks;
         static void drive(void *ptr);
         static void gps_initialize(void "ptr");
         static void send_data();
@@ -34,4 +34,5 @@ class 15inch {
         static void task_exists(std::string name);
         static void kill_task(std::string name);
         static void move_to(void *ptr);
-}
+};
+#endif

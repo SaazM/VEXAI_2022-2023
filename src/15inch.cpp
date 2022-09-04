@@ -1,7 +1,7 @@
-#include "include/main.h"
-#include "include/15inch.h"
+#include "main.h"
+#include "15inch.h"
 #include "system/json.hpp"
-#include "system/Serial.h"
+#include "serial/Serial.h"
 #include <map>
 #include <cmath>
 #include <atomic>
@@ -10,9 +10,10 @@
 #include <unordered_map>
 #include <deque>
 using namespace pros;
-const double pi = 3.141592653589793238;
+using namespace std;
 
 Controller 15inch::master(E_CONTROLLER_MASTER);
+
 PD 15inch::power_PD(/*add values*/);
 PD 15inch::strafe_PD(/*add values*/);
 PD 15inch::turn_PD(/*add values*/);
@@ -31,8 +32,10 @@ Gps 15inch::gps(16);
 Imu 15inch::IMU(15);
 Rotation 15inch::BE(20);
 
-void 15inch::drive(void *ptr) {
+std::map<std::string, std::unique_ptr<pros::Task>> 15inch::tasks;
 
+void 15inch::drive(void *ptr) {
+    
 }
 
 void 15inch::gps_initialize(void *ptr) {

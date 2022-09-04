@@ -8,7 +8,7 @@
 #include <atomic>
 using namespace pros;
 
-class Robot{
+class Robot {
 	public:
 		static Controller master;
 		static Motor FLT;

@@ -1,5 +1,7 @@
 #include "main.h"
 #include "Robot.h"
+#include "15inch.h"
+
 using namespace pros;
 
 void opcontrol(){
