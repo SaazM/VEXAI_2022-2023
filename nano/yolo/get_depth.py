@@ -1,3 +1,7 @@
+# tl, tr, bl, br are coordinates of bounding box
+# h and w are height and width (duh)
+# depths is 480x640 array of depth map
+
 def find_depth_average(tl, tr, bl, br, h, w, depths):
     new_height = h // 2
     new_width = w // 2    
