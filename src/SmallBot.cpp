@@ -34,8 +34,34 @@ Rotation SmallBot::BE(20);
 
 std::map<std::string, std::unique_ptr<pros::Task>> SmallBot::tasks;
 
+void SmallBot::h_drive(int power, int strafe, int turn) {
+    int left_side;
+    int right_side;
+    int strafe_h;
+
+    left_side = turn + power;
+    right_side = turn - power;
+    strafe_h = strafe;
+
+    FL = -left_side;
+    ML = left_side;
+    BL = -left_side;
+    FR = -right_side;
+    MR = right_side;
+    BR = -right_side;
+    H = strafe_h;
+}
+
 void SmallBot::drive(void *ptr) {
-    
+    while(true) {
+        int power = master.get_analog(ANALOG_LEFT_Y);
+        int strafe = master.get_analog(ANALOG_LEFT_X);
+        int turn  = master.get_analog(ANALOG_RIGHT_X);
+
+        h_drive(power, strafe, turn);
+
+        delay(5);
+    }
 }
 
 void SmallBot::gps_initialize(void *ptr) {

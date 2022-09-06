@@ -26,6 +26,7 @@ class SmallBot {
         static Imu IMU;
         static Rotation BE;
         static std::map<std::string, std::unique_ptr<pros::Task>> tasks;
+        static void h_drive(int power, int strafe, int turn);
         static void drive(void *ptr);
         static void gps_initialize(void *ptr);
         static void send_data();
