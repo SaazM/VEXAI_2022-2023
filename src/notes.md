@@ -1,3 +1,4 @@
+# Introduction Notes
 A couple notes for you guys reading these files for the first time
 
 - it's OKAY if you don't understand everything. We didn't when we started out. Just ask the captains if you don't understand something, and either
@@ -14,3 +15,10 @@ you also have to do #include <[file].h> at the heading
 die on us when threads change and use them constantly
 
 
+# Current Filesystem design
+
+## C++
+- opcontrol.cpp
+- <details><summary>utis</summary>
+<br /
+</details>
