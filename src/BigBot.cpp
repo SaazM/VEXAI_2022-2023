@@ -5,9 +5,11 @@
 #include <map>
 #include <cmath>
 #include <atomic>
+#include <valarray>
 #include <vector>
 #include <chrono>
 #include <unordered_map>
+#include <string>
 #include <deque>
 using namespace pros;
 using namespace std;
@@ -20,14 +22,19 @@ Controller BigBot::master(E_CONTROLLER_MASTER);
 
 /* --- NEW PORTS 8/25 --- */
 
-Motor BigBot::BRB(19, true);
-Motor BigBot::BRT(20);
-Motor BigBot::BLT(11, true);
-Motor BigBot::BLB(12);
-Motor BigBot::FLT(1, true);
-Motor BigBot::FLB(2);
-Motor BigBot::FRB(10, true);
-Motor BigBot::FRT(9);
+// Motor Ports
+Motor Robot::BRB(19, true);
+Motor Robot::BRT(20);
+Motor Robot::BLT(11, true);
+Motor Robot::BLB(12);
+Motor Robot::FLT(1, true);
+Motor Robot::FLB(2);
+Motor Robot::FRB(10, true);
+Motor Robot::FRT(9);
+
+// Encoder setup for Mae
+#define QUAD_TOP_PORT 'A'
+#define QUAD_BOTTOM_PORT 'B'
 
 
 void BigBot::drive(void *ptr) {
@@ -111,4 +118,8 @@ void BigBot::kill_task(std::string name) {
     if (task_exists(name)) {
         tasks.erase(name);
     }
+}
+
+void display_shaft_encoder(pros::ADIEncoder encoder) {
+    pros::lcd::print(1, "Encoder value: %s\n", std::to_string(encoder.get_value()));
 }
